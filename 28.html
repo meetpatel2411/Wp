@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Countdown</title>
+    
+</head>
+<body>
+    <h1>Birthday Countdown</h1>
+    <form>
+        <label for="dob">Enter your Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+        <br>
+        <button type="button" onclick="calculateDaysLeft()">Calculate</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        function calculateDaysLeft() 
+        {
+            var dobInput = document.getElementById("dob");
+            var dob = new Date(dobInput.value);
+            var today = new Date();
+        
+            var nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+            if (nextBirthday < today) 
+            {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+            
+            var daysLeft = Math.ceil((nextBirthday - today)/(1000 * 60 * 60 * 24));
+            
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Days left until your next birthday: " + daysLeft + " days";
+        }
+    </script>
+</body>
+</html>
